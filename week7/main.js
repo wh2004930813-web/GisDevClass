@@ -138,7 +138,7 @@ function addInteraction() {
     });
   });
 
-  //當繪圖結束時
+   //當繪圖結束時
   draw.on('drawend', function () {
     measureTooltipElement.className = 'ol-tooltip ol-tooltip-static';
     measureTooltip.setOffset([0, -7]);  //位移的數值
@@ -160,7 +160,7 @@ function addInteraction() {
     style: drawingStyle,
   });
   map.addInteraction(draw);
-  
+
   //配置事件監聽變數
   let listener;
   
@@ -173,26 +173,13 @@ function addInteraction() {
       let output;  //輸出量測結果文字
       if (geom instanceof Polygon) {
         output = formatArea(geom);  //計算面積
-      }else if (geom instanceof LineString) {
-        output = formatLength(geom);  //計算距離
-        }
-        labMeasureResult.innerHTML = output;
-      });
+      } else if (geom instanceof LineString) {
+         output = formatLength(geom);  //計算距離
+      }
+      labMeasureResult.innerHTML = output;
     });
+  });
 
-}
-
-//開始量測
-function startMeasure() {
-  if (draw != null) { map.removeInteraction(draw); }
-  //呼叫addInteraction()函式來啟用draw
-  addInteraction();
-}
-
-//停止量測
-function stopMeasure() {
-  map.removeInteraction(draw);
-  draw = null;
 }
 
 //建立一個新的量測的工具提示 Create a new measure tooltip
@@ -221,9 +208,42 @@ function typeSelectChanged() {
 
 //清除向量圖徵
 function clearVectorFeature() {
+  vectorSource.clear();
   map.getOverlays().clear();  //清除Overlays疊加層
 }
+//開始量測
+function startMeasure() {
+  if (draw != null) { map.removeInteraction(draw); }
+  //呼叫addInteraction()函式來啟用draw
+  addInteraction();
+}
 
-//呼叫addInteraction()函式來啟用draw
-addInteraction();
+//停止量測
+function stopMeasure() {
+  map.removeInteraction(draw);
+  draw = null;
+}
 
+//格式化距離結果輸出
+function formatLength(line) {
+  const length = sphere.getLength(line); //計算距離
+  let output;
+  if (length > 100) {
+    output = Math.round((length / 1000) * 100) / 100 + ' ' + 'km';
+  } else {
+    output = Math.round(length * 100) / 100 + ' ' + 'm';
+  }
+  return output;
+};
+
+//格式化面積結果輸出
+function formatArea(polygon) {
+  const area = sphere.getArea(polygon); //計算面積
+  let output;
+  if (area > 10000) {
+    output = Math.round((area / 1000000) * 100) / 100 + ' ' + 'km<sup>2</sup>';
+  } else {
+    output = Math.round(area * 100) / 100 + ' ' + 'm<sup>2</sup>';
+  }
+  return output;
+};
