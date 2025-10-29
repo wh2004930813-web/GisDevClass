@@ -2,8 +2,8 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>逢甲大學</name>
-	<gx:CascadingStyle kml:id="__managed_style_2C488A5F7E1E22194902">
-		<Style>
+
+	<style id="__managed_style_2C488A5F7E1E22194902">
 			<IconStyle>
 				<scale>1.2</scale>
 				<Icon>
@@ -24,10 +24,10 @@
 				<displayMode>hide</displayMode>
 			</BalloonStyle>
 		</Style>
-	</gx:CascadingStyle>
-	<gx:CascadingStyle kml:id="__managed_style_1940897CAF1E22194902">
-		<Style>
-			<IconStyle>
+	
+	<style id="__managed_style_1940897CAF1E22194902">
+		<IconStyle>
+			<Icon>
 				<Icon>
 					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
 				</Icon>

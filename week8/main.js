@@ -93,13 +93,13 @@ function displayFeatureInfo(pixel) {
     const info = features[0].get('name');  //取出名稱文字內容
     document.getElementById('info').innerHTML = info;
 
-    createMeasureTooltip();  //建立新的工具提示
+     createMeasureTooltip();  //建立新的工具提示
     measureTooltipElement.innerHTML = info;
     const tooltipCoord = features[0].getGeometry().getInteriorPoint().getCoordinates(); //取得內心坐標
     measureTooltip.setPosition(tooltipCoord);
 
-    map.getView().fit(features[0].getGeometry().getExtent());
-    view.setZoom(view.getZoom() - 2);
+     map.getView().fit(features[0].getGeometry().getExtent());
+     view.setZoom(view.getZoom() - 2);
 
   } else {
     document.getElementById('info').innerHTML = '&nbsp;';
@@ -108,5 +108,5 @@ function displayFeatureInfo(pixel) {
 
 //當滑鼠按下圖徵時
 map.on('click', function (evt) {
-  displayFeatureInfo(evt.pixel);
+   displayFeatureInfo(evt.pixel);
 });
